@@ -27,68 +27,72 @@ class SearchingLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     mapController searchController = Get.put(mapController());
     HomeController homeController = Get.put(HomeController());
-    AvailableVehicles availableVehicles = Get.put(AvailableVehicles());
+     AvailableVehicles availableVehicles = Get.put(AvailableVehicles());
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          GetBuilder<mapController>(builder: (controller) {
-            return Column(
-              children: [
-                TextFormField(
-                  controller: pickupController,
-                  onTap: () => controller.changeSearchTrue(),
-                  onChanged: (value) {
-                    searchController.onChangedHandling(value);
-                  },
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: () async {
-                            var location = await searchController
-                                .userCurrentLocationButtonHandler();
-                            pickupController.text = location;
-                          },
-                          icon: Icon(Icons.my_location)),
-                      prefixIcon: Icon(Icons.search),
-                      hintText: "Enter your Pickup Location",
-                      fillColor: textfieldColor,
-                      filled: true,
-                      border: textfieldBorder),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextFormField(
-                  onTap: () => controller.changeSearchFalse(),
-                  onChanged: (value) async {
-                    controller.onChangedHandling(value);
-                  },
-                  controller: destinationController,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: "Enter your Destination",
-                      fillColor: textfieldColor,
-                      filled: true,
-                      border: textfieldBorder),
-                ),
-              ],
-            );
-          }),
+          GetBuilder<mapController>(
+            builder: (controller) {
+              return Column(
+                children: [
+                  TextFormField(
+                    controller: pickupController,
+                    onTap: ()=>controller.changeSearchTrue(),
+                    onChanged: (value) {
+                      searchController.onChangedHandling(value);
+                    },
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            onPressed: () async {
+                              
+                              var location = await searchController
+                                  .userCurrentLocationButtonHandler();
+                              pickupController.text = location;
+                         
+                            },
+                            icon: Icon(Icons.my_location)),
+                        prefixIcon: Icon(Icons.search),
+                        hintText: "Enter your Pickup Location",
+                        fillColor: textfieldColor,
+                        filled: true,
+                        border: textfieldBorder),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextFormField(
+                    onTap: () =>  controller.changeSearchFalse(),
+                    onChanged: (value) async {
+                      controller.onChangedHandling(value);
+                     
+                    },
+                    controller: destinationController,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search),
+                        hintText: "Enter your Destination",
+                        fillColor: textfieldColor,
+                        filled: true,
+                        border: textfieldBorder),
+                  ),
+                ],
+              );
+            }
+          ),
           SizedBox(height: 20),
           NeumorphicButton(
             pressed: false,
             onPressed: () async {
               print("starting Searching");
               //   String userId = await IdStoring.getId();
-
-              //  connect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: vehicleId );
+             
+            //  connect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: vehicleId );
               // Navigator.of(context)
               //     .push(MaterialPageRoute(builder: (context) =>MainScreen(widget: AfterConfirmScreen(), height: .33)));
-               await getController.lastResponseGetting(context);
+            //  await getController.lastResponseGetting(context);
               await vehicle.gettingVehicleDetails();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      MainScreen(widget: AfterConfirmScreen(), height: .34)));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => MainScreen(widget: AfterConfirmScreen(), height: .34)));
             },
             style: NeumorphicStyle(
               border: const NeumorphicBorder(width: 1),

@@ -1,5 +1,6 @@
 import 'package:cab_user/helpers/mapbox_handler.dart';
 import 'package:cab_user/views/navigation/map.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mapbox_navigation/library.dart';
 import 'package:get/get.dart';
@@ -82,14 +83,6 @@ bool isNavigating = false;
 
   //***********search */
 
-
-  pickupJsonInizializing() async {
-   var response = await getParsedReverseGeocoding(currentLocation);
-    pickupjson = json.encode(response);
-    destination = json.encode(response);
-    update();
-  }
-
   userCurrentLocationButtonHandler() async {
     if (!isDestination) {
       var response = await getParsedReverseGeocoding(currentLocation);
@@ -124,11 +117,8 @@ bool isNavigating = false;
   }
 
   lastResponseGetting(context) async {
-    
     pickupLocation = await getTripLatlng("source");
-    print("source getted");
     destinationLocation = await getTripLatlng("destination");
-    print("destination getted");
     lastResponse = await getDirectionsAPIResponse();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => MapScreen()));
@@ -162,7 +152,7 @@ bool isNavigating = false;
       String iconImage = i == 0 ? 'circle' : 'square';
       await mapboxMapController.addSymbol(SymbolOptions(
         geometry: locations[i].target,
-        iconSize: 0.10,
+        iconSize: 0.1,
         iconImage: "assets/icon/$iconImage.png",
       ));
     }
@@ -198,6 +188,7 @@ bool isNavigating = false;
   initailizeDirectionResponse() {
     distance = (lastResponse['distance'] / 1000).toStringAsFixed(1);
     geometry = lastResponse['geometry'];
+    update();
   }
 
 

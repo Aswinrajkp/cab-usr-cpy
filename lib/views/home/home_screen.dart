@@ -1,4 +1,5 @@
 import 'package:cab_user/controller/map_controller.dart';
+import 'package:cab_user/helpers/mapbox_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -39,78 +40,86 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     initialCameraPosition =
-        CameraPosition(target: getController.currentLocation, zoom: 15);
-    // TODO: implement initState
+        CameraPosition(target: getCenterCoordinatesForPolyline(getController.geometry), zoom: 15);
+    for (String type in ['source', 'destination']) {
+      getController.locations.add(CameraPosition(target: getTripLatlng(type)));
+    }
+    getController.initailizeDirectionResponse();
     super.initState();
   }
 
-  onMapCreated(MapboxMapController controller) async {
-    this.mapboxMapController = controller;
-  }
+  // onMapCreated(MapboxMapController controller) async {
+  //   this.mapboxMapController = controller;
+  // }
 
-  onStyleLoadedCallback() async {}
+  // onStyleLoadedCallback() async {}
 
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.put(HomeController());
+    mapController getController = Get.put(mapController());
     return SafeArea(
       child: Scaffold(
         extendBody: true,
         body: Swipe(
             onSwipeLeft: () => ZoomDrawer.of(context)!.toggle(),
             onSwipeRight: () => ZoomDrawer.of(context)!.toggle(),
-            child: Stack(
-              children: [
-                SlidingUpPanel(
-                  minHeight: MediaQuery.of(context).size.height * widget.height,
-                  controller: panelController,
-                  parallaxEnabled: true,
-                  parallaxOffset: .5,
-                  body: Stack(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.9,
-                        child: MapboxMap(
-                          initialCameraPosition: initialCameraPosition,
-                          accessToken:
-                              "sk.eyJ1IjoiYXN3aW5yYWprcCIsImEiOiJjbDI3NHBxb2swMzlkM2RwdTZ0MDRqeDdwIn0.s60QCvF9-hyJe_52Gbg6UQ",
-                          onMapCreated: onMapCreated,
-                          onStyleLoadedCallback: onStyleLoadedCallback,
-                          myLocationEnabled: true,
-                          myLocationTrackingMode:
-                              MyLocationTrackingMode.TrackingGPS,
-                          minMaxZoomPreference:
-                              const MinMaxZoomPreference(14, 17),
-                        ),
+            child: GetBuilder<mapController>(
+              builder: (getController) {
+                return Stack(
+                  children: [
+                    SlidingUpPanel(
+                      minHeight: MediaQuery.of(context).size.height * widget.height,
+                      controller: panelController,
+                      parallaxEnabled: true,
+                      parallaxOffset: .5,
+                      body: Stack(
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.9,
+                            child: MapboxMap(
+                              initialCameraPosition: initialCameraPosition,
+                              accessToken:
+                                  "sk.eyJ1IjoiYXN3aW5yYWprcCIsImEiOiJjbDI3NHBxb2swMzlkM2RwdTZ0MDRqeDdwIn0.s60QCvF9-hyJe_52Gbg6UQ",
+                              onMapCreated: getController.onMapCreated,
+                              onStyleLoadedCallback: getController.onStyleLoadedCallback,
+                              myLocationEnabled: true,
+                              myLocationTrackingMode:
+                                  MyLocationTrackingMode.TrackingGPS,
+                              minMaxZoomPreference:
+                                  const MinMaxZoomPreference(14, 17),
+                            ),
+                          ),
+                          Positioned(
+                              right: 0,
+                              child: IconButton(
+                                onPressed: () {
+                                  mapboxMapController.animateCamera(
+                                      CameraUpdate.newCameraPosition(
+                                          initialCameraPosition));
+                                },
+                                icon: Icon(Icons.my_location),
+                                color: Colors.blue.shade400,
+                              )),
+                          Positioned(
+                              top: 10,
+                              left: 10,
+                              child: LeadingWidget(
+                                color: Colors.black,
+                              )),
+                        ],
                       ),
-                      Positioned(
-                          right: 0,
-                          child: IconButton(
-                            onPressed: () {
-                              mapboxMapController.animateCamera(
-                                  CameraUpdate.newCameraPosition(
-                                      initialCameraPosition));
-                            },
-                            icon: Icon(Icons.my_location),
-                            color: Colors.blue.shade400,
-                          )),
-                      Positioned(
-                          top: 10,
-                          left: 10,
-                          child: LeadingWidget(
-                            color: Colors.black,
-                          )),
-                    ],
-                  ),
-                  panelBuilder: (controller) =>
-                      GetBuilder<HomeController>(builder: (HomeController) {
-                    return PanelWidget(
-                        controller: controller,
-                        panelController: panelController,
-                        widget: widget.widget);
-                  }),
-                ),
-              ],
+                      panelBuilder: (controller) =>
+                          GetBuilder<HomeController>(builder: (HomeController) {
+                        return PanelWidget(
+                            controller: controller,
+                            panelController: panelController,
+                            widget: widget.widget);
+                      }),
+                    ),
+                  ],
+                );
+              }
             )),
       ),
     );

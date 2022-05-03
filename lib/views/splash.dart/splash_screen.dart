@@ -1,7 +1,6 @@
 import 'package:cab_user/controller/map_controller.dart';
 import 'package:cab_user/helpers/mapbox_handler.dart';
 import 'package:cab_user/views/login/login.dart';
-import 'package:cab_user/views/navigation/map.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +23,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     initializeLocationAndSave();
-    
 
     super.initState();
   }
@@ -53,13 +51,8 @@ class _SplashScreenState extends State<SplashScreen> {
     getController.currentAddress = (await getParsedReverseGeocoding(
         getController.currentLocation))['place'];
 
-
-       await getController.pickupJsonInizializing();
-      await getController.lastResponseGetting(context);
-       getController.initailizeDirectionResponse();
-
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => MapScreen()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
   @override
