@@ -1,12 +1,14 @@
-import 'package:cab_user/controller/navigation/map_controller.dart';
+import 'package:cab_user/controller/map_controller.dart';
 import 'package:cab_user/helpers/mapbox_handler.dart';
-import 'package:cab_user/views/home/home.dart';
+import 'package:cab_user/views/login/login.dart';
+import 'package:cab_user/views/navigation/map.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:location/location.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     initializeLocationAndSave();
+    
 
     super.initState();
   }
@@ -50,8 +53,13 @@ class _SplashScreenState extends State<SplashScreen> {
     getController.currentAddress = (await getParsedReverseGeocoding(
         getController.currentLocation))['place'];
 
+
+       await getController.pickupJsonInizializing();
+      await getController.lastResponseGetting(context);
+       getController.initailizeDirectionResponse();
+
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => MapScreen()));
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:cab_user/views/bottom_sheet/bottom_showing.dart';
+import 'package:cab_user/views/navigation/map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -43,14 +44,17 @@ class AfterFindingVehicleScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Icon(
-                  Icons.call,
-                  size: 30,
+                IconButton(
+                 icon: Icon( Icons.call,),
+                onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MapScreen()));
+                },
+                 iconSize:30,
                 ),
                 NeumorphicButton(
                   pressed: false,
                   onPressed: () => Get.to(
-                      MainScreen(widget: BottomShowngScreen(), height: .31)),
+                     HomeScreen()),
                   style: NeumorphicStyle(
                     border: const NeumorphicBorder(width: 1),
                     shape: NeumorphicShape.convex,

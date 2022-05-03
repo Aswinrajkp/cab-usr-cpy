@@ -1,4 +1,5 @@
 import 'package:cab_user/models/get_methords/vehicles_getting.dart';
+import 'package:cab_user/requests/available_vehicle_get_request.dart';
 import 'package:cab_user/requests/vehicle_details_get_request.dart';
 import 'package:cab_user/styles/bottom_sheet_style.dart';
 import 'package:cab_user/views/bottom_sheet/after_selecting_vehicle.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AfterConfirmScreen extends StatelessWidget {
+
   AfterConfirmScreen({Key? key}) : super(key: key);
 
   List<Vehicles>? vehicles;
@@ -16,6 +18,7 @@ class AfterConfirmScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     VehicleDetailsServices vehicleController =
         Get.put(VehicleDetailsServices());
+        AvailableVehicles availableVehicles = Get.put(AvailableVehicles());
 
     return GetBuilder<VehicleDetailsServices>(
         builder: (vehicleController) {
@@ -24,17 +27,20 @@ class AfterConfirmScreen extends StatelessWidget {
             physics: ScrollPhysics(),
             itemCount: 4,
             itemBuilder: (BuildContext context, int index) {
-              var vehicle = vehicleController.response.data[index];
+              var vehicle = vehicleController.jsondata[index];
               return ListTile(
-                onTap: () => Navigator.pushReplacement(
+                onTap: ()async { 
+                 String vehicleId = await availableVehicles.gettingAvailableVehilces(vehicle["vehicle_name"]);
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (ctx) => MainScreen(
-                              widget: AfterSelectingVehicleScreen(),
+                              widget: AfterSelectingVehicleScreen(vehicleId: vehicleId),
                               height: .18,
                               leading: BackButtonWidget(),
-                            ))),
-                            leading: Image(image: NetworkImage(vehicleController.response.data[index]['image'])),
+                            )));
+            },
+                            leading: Image(image: NetworkImage(vehicle['image'])),
                 title: Text("${vehicle["vehicle_name"]}",style: vehicleShowingListtileStyle),
                 subtitle:  Text(
                   "Avg Speed ${vehicle['speed']}",

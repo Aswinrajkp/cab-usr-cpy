@@ -56,7 +56,7 @@ dependencies:
   menu_button: ^1.4.2+1
   mapbox_search: ^3.0.1+2
   flutter_mapbox_navigation: ^0.0.26
-  socket_io_client: ^1.0.2
+  socket_io_client: ^2.0.0-beta.4-nullsafety.0
 
 dev_dependencies:
   flutter_test:

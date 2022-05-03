@@ -27,7 +27,7 @@ class HomeController extends GetxController {
       case MenuItems.home:
         return MainScreen(
           widget: BottomShowngScreen(),
-          height: .20,
+          height: .12,
           leading: LeadingWidget(
             color: Colors.black,
           ),

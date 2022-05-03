@@ -7,14 +7,15 @@ import 'package:get/state_manager.dart';
 class AvailableVehicles extends GetxController {
   late Response response;
   List availableVehicles = [];
- late var VehicleId = availableVehicles[0]["_id"];
+  late var VehicleId = availableVehicles[0]["_id"];
 
-  gettingAvailableVehilces() async {
+  gettingAvailableVehilces(vehicleName) async {
     try {
-      response = await mainDio.get("/vehicles/available?type=Mini");
+      print("Getting Available Vehicles");
+      response = await mainDio.get("/vehicles/available?type=$vehicleName");
       Map data = json.decode(response.data);
       availableVehicles = data["result"];
-      print(availableVehicles[0]["_id"]);
+      print(availableVehicles[0]);
       return availableVehicles[0]["_id"];
     } on DioError catch (e) {
       print(e.toString());

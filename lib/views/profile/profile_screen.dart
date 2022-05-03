@@ -1,7 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cab_user/controller/home/home_controller.dart';
+import 'package:cab_user/controller/home_controller.dart';
 import 'package:cab_user/controller/profile_controller.dart';
 import 'package:cab_user/styles/profile_style.dart';
 import 'package:cab_user/views/widgets/leading_widget.dart';

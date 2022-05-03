@@ -90,8 +90,8 @@ getTripLatlng(String type) {
     print("source is passing");
     return source;
   } else {
+    
     print("destination is passing");
-
     return destination;
   }
 }

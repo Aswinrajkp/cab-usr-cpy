@@ -1,7 +1,7 @@
 import 'package:cab_user/requests/vehicle_details_get_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:cab_user/controller/home/home_controller.dart';
+import 'package:cab_user/controller/home_controller.dart';
 import 'package:cab_user/views/home/menu_screen.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:cab_user/controller/navigation/map_controller.dart';
+import 'package:cab_user/controller/map_controller.dart';
 import 'package:cab_user/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

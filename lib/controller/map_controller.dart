@@ -1,6 +1,5 @@
 import 'package:cab_user/helpers/mapbox_handler.dart';
 import 'package:cab_user/views/navigation/map.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mapbox_navigation/library.dart';
 import 'package:get/get.dart';
@@ -15,8 +14,8 @@ class mapController extends GetxController {
   late LocationData locationData;
   late LatLng destinationLatlng;
   late LatLng pickupLatlng;
-  late LatLng pickupLocation;
-  late LatLng destinationLocation;
+  late LatLng pickupLocation; // it's the current pickup location of user
+  late LatLng destinationLocation; // it's the current destination of user
   late Map lastResponse;
   bool isDestination = false;
   late String pickupjson; // for sharing
@@ -83,11 +82,19 @@ bool isNavigating = false;
 
   //***********search */
 
+
+  pickupJsonInizializing() async {
+   var response = await getParsedReverseGeocoding(currentLocation);
+    pickupjson = json.encode(response);
+    destination = json.encode(response);
+    update();
+  }
+
   userCurrentLocationButtonHandler() async {
     if (!isDestination) {
       var response = await getParsedReverseGeocoding(currentLocation);
       var pickup = response["place"];
-      pickupLatlng = response['location'];
+      pickupLocation = response['location'];
       pickupjson = json.encode(response);
       pickUpLocationForDriver = response["place"];
       update();
@@ -117,8 +124,11 @@ bool isNavigating = false;
   }
 
   lastResponseGetting(context) async {
+    
     pickupLocation = await getTripLatlng("source");
+    print("source getted");
     destinationLocation = await getTripLatlng("destination");
+    print("destination getted");
     lastResponse = await getDirectionsAPIResponse();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => MapScreen()));
@@ -152,11 +162,12 @@ bool isNavigating = false;
       String iconImage = i == 0 ? 'circle' : 'square';
       await mapboxMapController.addSymbol(SymbolOptions(
         geometry: locations[i].target,
-        iconSize: 0.1,
+        iconSize: 0.10,
         iconImage: "assets/icon/$iconImage.png",
       ));
     }
     addSourceAndLineLayer();
+    update();
   }
 
   addSourceAndLineLayer() async {

@@ -1,9 +1,9 @@
-import 'package:cab_user/controller/navigation/map_controller.dart';
+import 'package:cab_user/controller/map_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:cab_user/controller/home/home_controller.dart';
+import 'package:cab_user/controller/home_controller.dart';
 import 'package:cab_user/views/widgets/leading_widget.dart';
 import 'package:cab_user/views/widgets/panel_widget.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
@@ -56,8 +56,6 @@ class _MainScreenState extends State<MainScreen> {
     return SafeArea(
       child: Scaffold(
         extendBody: true,
-        // appBar: AppBar(leading: LeadingWidget(),backgroundColor: Colors.transparent,elevation: 0,),
-        // backgroundColor: Colors.blue.shade100,
         body: Swipe(
             onSwipeLeft: () => ZoomDrawer.of(context)!.toggle(),
             onSwipeRight: () => ZoomDrawer.of(context)!.toggle(),

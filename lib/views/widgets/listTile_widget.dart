@@ -52,40 +52,40 @@ class ListileWidget extends StatelessWidget {
   }
 }
 
-class VehicleShowinListitile extends StatelessWidget {
-  final image;
-  final title;
-  final money;
-  const VehicleShowinListitile({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.money,
-  }) : super(key: key);
+// class VehicleShowinListitile extends StatelessWidget {
+//   final image;
+//   final title;
+//   final money;
+//   const VehicleShowinListitile({
+//     Key? key,
+//     required this.image,
+//     required this.title,
+//     required this.money,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () => Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (ctx) => MainScreen(
-                    widget: AfterSelectingVehicleScreen(),
-                    height: .18,
-                    leading: BackButtonWidget(),
-                  ))),
-      // onTap: (){
-      //   Get.off(MainScreen(widget: AfterSelectingVehicleScreen(), height: .18,leading: BackButtonWidget(),));
-      // },
-      leading: Image(image: NetworkImage(image)),
-      title: Text(title, style: vehicleShowingListtileStyle),
-      trailing: Text(
-        money,
-        style: vehicleShowingListtileStyle,
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       onTap: () => Navigator.pushReplacement(
+//           context,
+//           MaterialPageRoute(
+//               builder: (ctx) => MainScreen(
+//                     widget: AfterSelectingVehicleScreen(),
+//                     height: .18,
+//                     leading: BackButtonWidget(),
+//                   ))),
+//       // onTap: (){
+//       //   Get.off(MainScreen(widget: AfterSelectingVehicleScreen(), height: .18,leading: BackButtonWidget(),));
+//       // },
+//       leading: Image(image: NetworkImage(image)),
+//       title: Text(title, style: vehicleShowingListtileStyle),
+//       trailing: Text(
+//         money,
+//         style: vehicleShowingListtileStyle,
+//       ),
+//     );
+//   }
+// }
 
 class ProfileListTileWidget extends StatelessWidget {
   final title;
