@@ -12,7 +12,7 @@ void connect(
     required userId,
     required pickup}) async {
   print("Entered");
-  socket = io.io("http://48f3-103-85-205-79.ngrok.io", <String, dynamic>{
+  socket = io.io("http://0a35-103-85-205-74.ngrok.io", <String, dynamic>{
     'transports': ['websocket'],
     'autoConnect': false,
   });
