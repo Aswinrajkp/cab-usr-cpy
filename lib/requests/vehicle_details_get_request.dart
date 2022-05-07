@@ -23,6 +23,8 @@ var jsondata;
 
        response = await mainDio.get("/vehicles");
        jsondata = json.decode(response.data);
+      print(jsondata);
+      update();
        return jsondata;
     } on DioError catch (e) {
       print(e);

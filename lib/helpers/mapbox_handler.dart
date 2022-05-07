@@ -9,7 +9,6 @@ import '../requests/map_requests/mapbox_search.dart';
 
 // ----------------------------- Mapbox Search Query -----------------------------
 String getValidatedQueryFromQuery(String query) {
-  // Remove whitespaces
   String validatedQuery = query.trim();
   return validatedQuery;
 }

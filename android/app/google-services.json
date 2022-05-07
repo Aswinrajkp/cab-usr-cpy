@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "267177349156",
+    "project_id": "cabhub-fad6a",
+    "storage_bucket": "cabhub-fad6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267177349156:android:a83aa001e283a177a6c8b1",
+        "android_client_info": {
+          "package_name": "com.example.mapbox_navigation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267177349156-m6danfiag7kcnpthhi5ge01dfh3odbr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBguAm5Hd0mtPdubFVoKQhocuT-8L-n7mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267177349156-m6danfiag7kcnpthhi5ge01dfh3odbr1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

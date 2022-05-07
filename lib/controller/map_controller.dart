@@ -1,6 +1,5 @@
 import 'package:cab_user/helpers/mapbox_handler.dart';
 import 'package:cab_user/views/navigation/map.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mapbox_navigation/library.dart';
 import 'package:get/get.dart';
@@ -120,8 +119,8 @@ bool isNavigating = false;
     pickupLocation = await getTripLatlng("source");
     destinationLocation = await getTripLatlng("destination");
     lastResponse = await getDirectionsAPIResponse();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => MapScreen()));
+    // Navigator.of(context)
+    //     .push(MaterialPageRoute(builder: (context) => MapScreen()));
 
     print(lastResponse);
     update();
@@ -185,10 +184,11 @@ bool isNavigating = false;
         ));
   }
 
-  initailizeDirectionResponse() {
+  initailizeDirectionResponse()  {
     distance = (lastResponse['distance'] / 1000).toStringAsFixed(1);
     geometry = lastResponse['geometry'];
-    update();
+    print(distance);
+    return distance;
   }
 
 

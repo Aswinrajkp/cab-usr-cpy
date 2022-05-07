@@ -7,7 +7,7 @@ class BackButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back_ios_new_rounded),
+      icon: Icon(Icons.arrow_back_ios_new_rounded,color: Colors.black,),
       onPressed: () {
         Get.back();
       },

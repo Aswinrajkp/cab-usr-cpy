@@ -1,3 +1,4 @@
+import 'package:cab_user/requests/profile_get_request.dart';
 import 'package:cab_user/requests/vehicle_details_get_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -10,6 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileGettingController profile = Get.put(ProfileGettingController());
     VehicleDetailsServices vehicleController =
         Get.put(VehicleDetailsServices());
     HomeController controller = Get.put(HomeController());

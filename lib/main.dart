@@ -1,5 +1,6 @@
 import 'package:cab_user/helpers/shared_preferences.dart';
 import 'package:cab_user/helpers/socket_io.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cab_user/views/splash.dart/splash_screen.dart';
@@ -7,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await IdStoring.init();
   runApp(const MyApp());
 }

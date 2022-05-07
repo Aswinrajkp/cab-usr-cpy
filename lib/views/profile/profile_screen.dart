@@ -1,3 +1,5 @@
+import 'package:cab_user/requests/profile_get_request.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,11 +10,17 @@ import 'package:cab_user/views/widgets/leading_widget.dart';
 import 'package:cab_user/views/widgets/listTile_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+   ProfileScreen({Key? key}) : super(key: key);
+
+      
 
   @override
   Widget build(BuildContext context) {
     ProfileController controller = Get.put(ProfileController());
+    ProfileGettingController profile = Get.put(ProfileGettingController());
+
+
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
@@ -68,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "Aswinraj kp",
+                                    "${profile.profile["name"]}",
                                     style: profileTitle,
                                   ),
                                 ),
@@ -80,7 +88,11 @@ class ProfileScreen extends StatelessWidget {
                         child: CircleAvatar(
                       radius: size.width * .17,
                       backgroundImage: NetworkImage(
-                          "https://static.vecteezy.com/system/resources/thumbnails/002/275/847/small/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg"),
+                          
+                          // profile.user!.photoURL == null?
+                          "https://static.vecteezy.com/system/resources/thumbnails/002/275/847/small/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg"
+                          // : profile.user!.photoURL!
+                          ),
                     )),
                   ],
                 ),
@@ -121,13 +133,13 @@ class ProfileScreen extends StatelessWidget {
                               children: [
                                 ProfileListTileWidget(
                                   title: "Mobile Number",
-                                  trailing: "8129524358",
+                                  trailing: "${profile.profile["phone"]}",
                                 ),
                                 ProfileListTileWidget(
-                                    title: "Email Address",
-                                    trailing: "aswinrajk37@gmail.com"),
+                                    title: "Email ",
+                                    trailing: "${profile.profile["email"]}"),
                                 ProfileListTileWidget(
-                                    title: "Password", trailing: "*********"),
+                                    title: "Password", trailing: "******"),
                                 SizedBox(
                                   height: size.height * .10,
                                 ),

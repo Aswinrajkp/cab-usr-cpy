@@ -84,15 +84,11 @@ class SearchingLocation extends StatelessWidget {
             pressed: false,
             onPressed: () async {
               print("starting Searching");
-              //   String userId = await IdStoring.getId();
-             
-            //  connect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: vehicleId );
-              // Navigator.of(context)
-              //     .push(MaterialPageRoute(builder: (context) =>MainScreen(widget: AfterConfirmScreen(), height: .33)));
-            //  await getController.lastResponseGetting(context);
+             await getController.lastResponseGetting(context);
+            var distance=  getController.initailizeDirectionResponse();
               await vehicle.gettingVehicleDetails();
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MainScreen(widget: AfterConfirmScreen(), height: .34)));
+                  .push(MaterialPageRoute(builder: (context) => MainScreen(widget: AfterConfirmScreen(distance : distance), height: .34,leading: TextButton(child: Text("Navigation"),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MapScreen()));},))));
             },
             style: NeumorphicStyle(
               border: const NeumorphicBorder(width: 1),

@@ -1,5 +1,6 @@
 import 'package:cab_user/views/bottom_sheet/searching.dart';
 import 'package:cab_user/views/home/home_screen.dart';
+import 'package:cab_user/views/widgets/backbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +18,7 @@ class BottomShowngScreen extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    MainScreen(widget: SearchingLocation(), height: .60)));
+                    MainScreen(widget: SearchingLocation(), height: .60,leading: BackButtonWidget(),)));
           },
           child: Container(
             decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'package:cab_user/requests/map_requests/mapbox_search.dart';
 import 'package:cab_user/views/bottom_sheet/bottom_showing.dart';
+import 'package:cab_user/views/home/home.dart';
 import 'package:cab_user/views/home/home_screen.dart';
 import 'package:cab_user/views/navigation/map.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ initialize() async {
 
   @override
   Widget build(BuildContext context) {
-    return MainScreen(widget: BottomShowngScreen(), height:.31);
+    return HomeScreen();
   }
 
  

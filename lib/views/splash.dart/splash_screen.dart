@@ -1,5 +1,6 @@
 import 'package:cab_user/controller/map_controller.dart';
 import 'package:cab_user/helpers/mapbox_handler.dart';
+import 'package:cab_user/views/home/home.dart';
 import 'package:cab_user/views/login/login.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';

@@ -4,13 +4,14 @@ import 'package:cab_user/requests/vehicle_details_get_request.dart';
 import 'package:cab_user/styles/bottom_sheet_style.dart';
 import 'package:cab_user/views/bottom_sheet/after_selecting_vehicle.dart';
 import 'package:cab_user/views/home/home_screen.dart';
+import 'package:cab_user/views/navigation/map.dart';
 import 'package:cab_user/views/widgets/backbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AfterConfirmScreen extends StatelessWidget {
-
-  AfterConfirmScreen({Key? key}) : super(key: key);
+   final distance;
+  AfterConfirmScreen({Key? key , required this.distance}) : super(key: key);
 
   List<Vehicles>? vehicles;
 
@@ -28,6 +29,7 @@ class AfterConfirmScreen extends StatelessWidget {
             itemCount: 4,
             itemBuilder: (BuildContext context, int index) {
               var vehicle = vehicleController.jsondata[index];
+              double dis = double.parse(distance);
               return ListTile(
                 onTap: ()async { 
                  String vehicleId = await availableVehicles.gettingAvailableVehilces(vehicle["vehicle_name"]);
@@ -36,8 +38,10 @@ class AfterConfirmScreen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (ctx) => MainScreen(
                               widget: AfterSelectingVehicleScreen(vehicleId: vehicleId),
-                              height: .18,
-                              leading: BackButtonWidget(),
+                              height: .23,
+                              leading: TextButton(child: Text("Navigation"), onPressed: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MapScreen()));
+                              },),
                             )));
             },
                             leading: Image(image: NetworkImage(vehicle['image'])),
@@ -47,7 +51,7 @@ class AfterConfirmScreen extends StatelessWidget {
                   style: vehicleShowingListtileStyle,
                 ),
                 trailing: Text(
-                  "₹ ${vehicle['charge']}",
+                  "₹ ${vehicle["charge"]*dis}",
                   style: vehicleShowingListtileStyle,
                 )
               );

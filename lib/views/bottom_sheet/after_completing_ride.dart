@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cab_user/styles/bottom_sheet_style.dart';
-import 'package:cab_user/views/bottom_sheet/after_confirm.dart';
 import 'package:cab_user/views/bottom_sheet/payment.dart';
 import 'package:cab_user/views/home/home_screen.dart';
 
@@ -22,7 +20,7 @@ class AfterCompletingScreen extends StatelessWidget {
           child: NeumorphicButton(
             pressed: false,
             onPressed: () =>
-                Get.off(MainScreen(widget: PaymentBottomScreen(), height: .31)),
+                Get.off(MainScreen(widget: PaymentBottomScreen(), height: .31,leading: null,)),
             style: NeumorphicStyle(
               border: const NeumorphicBorder(width: 1),
               shape: NeumorphicShape.convex,
