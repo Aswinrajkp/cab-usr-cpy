@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 Dio mainDio = Dio(options);
 
 var options = BaseOptions(
-  baseUrl: "http://0a35-103-85-205-74.ngrok.io/api",
+  baseUrl: "http://0d8a-45-116-231-5.ngrok.io/api",
   responseType: ResponseType.plain,
 );
 

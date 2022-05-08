@@ -47,7 +47,7 @@ class AfterFindingVehicleScreen extends StatelessWidget {
                 IconButton(
                  icon: Icon( Icons.call,),
                 onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MapScreen()));
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MapScreen()));
                 },
                  iconSize:30,
                 ),
@@ -75,8 +75,9 @@ class AfterFindingVehicleScreen extends StatelessWidget {
                     size: 30,
                   ),
                   onPressed: () {
+                    getController.lastResponseGetting(context);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (ctx) => MainScreen(
+                        builder: (ctx) => MapScreen(
                               widget: AfterCompletingScreen(),
                               height: .14,
                               leading: BackButtonWidget(),

@@ -4,6 +4,7 @@ import 'package:cab_user/requests/vehicle_details_get_request.dart';
 import 'package:cab_user/styles/bottom_sheet_style.dart';
 import 'package:cab_user/views/bottom_sheet/after_selecting_vehicle.dart';
 import 'package:cab_user/views/home/home_screen.dart';
+import 'package:cab_user/views/navigation/driver_navigation.dart';
 import 'package:cab_user/views/navigation/map.dart';
 import 'package:cab_user/views/widgets/backbutton.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +37,11 @@ class AfterConfirmScreen extends StatelessWidget {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (ctx) => MainScreen(
+                        builder: (ctx) => DriverNavigation(
                               widget: AfterSelectingVehicleScreen(vehicleId: vehicleId),
                               height: .23,
                               leading: TextButton(child: Text("Navigation"), onPressed: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MapScreen()));
+                               
                               },),
                             )));
             },

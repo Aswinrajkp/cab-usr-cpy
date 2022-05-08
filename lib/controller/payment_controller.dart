@@ -39,16 +39,16 @@ class PaymentController extends GetxController{
 
   void handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    /*Fluttertoast.showToast(
+    Fluttertoast.showToast(
         msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT); */
+        toastLength: Toast.LENGTH_SHORT); 
   }
 
   void handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
-     /* Fluttertoast.showToast(
+      Fluttertoast.showToast(
         msg: "EXTERNAL_WALLET: " + response.walletName!,
-        toastLength: Toast.LENGTH_SHORT); */
+        toastLength: Toast.LENGTH_SHORT); 
   }
 
   @override

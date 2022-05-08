@@ -1,4 +1,5 @@
 import 'package:cab_user/controller/payment_controller.dart';
+import 'package:cab_user/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -55,7 +56,7 @@ class PaymentPage extends StatelessWidget {
             leading: Image.network("https://www.pngitem.com/pimgs/m/111-1111293_cash-in-hand-icon-hd-png-download.png"),
             title: Text("Cash",style: GoogleFonts.rubik(fontSize: 23, fontWeight: FontWeight.w600),),
             trailing: IconButton(onPressed: (){
-              
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomeScreen()), (route) => false);
             }, icon: Icon(Icons.arrow_forward_ios_rounded)),
           )
           ]);

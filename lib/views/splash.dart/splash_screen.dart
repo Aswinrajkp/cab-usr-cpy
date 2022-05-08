@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
         getController.currentLocation))['place'];
 
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
   @override

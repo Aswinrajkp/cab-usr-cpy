@@ -1,3 +1,4 @@
+import 'package:cab_user/views/payment/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,8 @@ class AfterCompletingScreen extends StatelessWidget {
         child: Center(
           child: NeumorphicButton(
             pressed: false,
-           // onPressed: () =>
-                // Get.off(MainScreen(widget: PaymentBottomScreen(), height: .31,leading: null,)),
+           onPressed: () =>
+                Get.off(const PaymentPage()),
             style: NeumorphicStyle(
               border: const NeumorphicBorder(width: 1),
               shape: NeumorphicShape.convex,

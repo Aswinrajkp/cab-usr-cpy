@@ -2,41 +2,28 @@ import 'package:cab_user/controller/home_controller.dart';
 import 'package:cab_user/controller/map_controller.dart';
 import 'package:cab_user/helpers/mapbox_handler.dart';
 import 'package:cab_user/views/home/home_screen.dart';
-import 'package:cab_user/views/navigation/routing.dart';
 import 'package:cab_user/views/widgets/panel_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class MapScreen extends StatefulWidget {
-  var widget;
+class DriverNavigation extends StatefulWidget {
+   var widget;
   var height;
   var leading;
-  MapScreen({Key? key,required this.widget, required this.height,required this.leading}) : super(key: key);
+   DriverNavigation({ Key? key, required this.widget, required this.height,required this.leading }) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<DriverNavigation> createState() => _DriverNavigationState();
 }
 
-class _MapScreenState extends State<MapScreen> {
-  late CameraPosition initialCameraPosition;
+class _DriverNavigationState extends State<DriverNavigation> {
+   late CameraPosition initialCameraPosition;
   late MapboxMapController mapboxMapController;
   PanelController panelController = PanelController();
 
-  // @override
-  // void initState() {
-  //   initialCameraPosition =
-  //       CameraPosition(target: getCenterCoordinatesForPolyline(getController.geometry), zoom: 15);
-  //   for (String type in ['source', 'destination']) {
-  //     getController.locations.add(CameraPosition(target: getTripLatlng(type)));
-  //   }
-  //   getController.initailizeDirectionResponse();
-  //   super.initState();
-  // }
-
-  @override
+@override
   Widget build(BuildContext context) {
     mapController controller = Get.put(mapController());
     getController.lastResponseGetting(context);

@@ -88,7 +88,9 @@ class SearchingLocation extends StatelessWidget {
             var distance=  getController.initailizeDirectionResponse();
               await vehicle.gettingVehicleDetails();
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MainScreen(widget: AfterConfirmScreen(distance : distance), height: .34,leading: TextButton(child: Text("Navigation"),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MapScreen()));},))));
+                  .push(MaterialPageRoute(builder: (context) => MapScreen(widget: AfterConfirmScreen(distance : distance), height: .34,leading: TextButton(child: Text("Navigation"),onPressed: (){
+                    // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MapScreen()));
+                  },))));
             },
             style: NeumorphicStyle(
               border: const NeumorphicBorder(width: 1),
