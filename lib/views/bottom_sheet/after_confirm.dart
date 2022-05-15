@@ -34,7 +34,7 @@ class AfterConfirmScreen extends StatelessWidget {
               return ListTile(
                 onTap: ()async { 
                  String vehicleId = await availableVehicles.gettingAvailableVehilces(vehicle["vehicle_name"]);
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (ctx) => DriverNavigation(
@@ -43,7 +43,9 @@ class AfterConfirmScreen extends StatelessWidget {
                               leading: TextButton(child: Text("Navigation"), onPressed: (){
                                
                               },),
-                            )));
+                            )),
+                            
+                            );
             },
                             leading: Image(image: NetworkImage(vehicle['image'])),
                 title: Text("${vehicle["vehicle_name"]}",style: vehicleShowingListtileStyle),
@@ -52,7 +54,7 @@ class AfterConfirmScreen extends StatelessWidget {
                   style: vehicleShowingListtileStyle,
                 ),
                 trailing: Text(
-                  "₹ ${vehicle["charge"]*dis}",
+                  "₹ ${(vehicle["charge"]*dis).toStringAsFixed(2)}",
                   style: vehicleShowingListtileStyle,
                 )
               );

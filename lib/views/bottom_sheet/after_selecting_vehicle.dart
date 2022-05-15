@@ -28,11 +28,15 @@ class _AfterSelectingVehicleScreenState extends State<AfterSelectingVehicleScree
    vehicleFinding(context);
     super.initState();
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     AvailableVehicles availableVehicles = Get.put(AvailableVehicles());
     mapController navigation = Get.put(mapController());
      AvailableVehicleInformation vehicleInformation = Get.put(AvailableVehicleInformation());
+     SocketIOController socketIO = Get.put(SocketIOController());
 
     return GetBuilder<AvailableVehicleInformation>(
       builder: (vehicleInformation) {
@@ -57,10 +61,11 @@ class _AfterSelectingVehicleScreenState extends State<AfterSelectingVehicleScree
   }
 
   vehicleFinding(context) async {
-                  print("UserId getting working");
+    SocketIOController socketIO = Get.put(SocketIOController());
+                  print("?????????????????????????????????????????????????????????????UserId getting working");
                   String userId = await IdStoring.getId();
-                  print(getController.pickupLocation);
-                  connect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: widget.vehicleId,pickup: getController.pickupLocation);
+                  print("============================${getController.pickupLocation}");
+                socketIO.socketConnect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: widget.vehicleId,pickup: getController.pickupLocation,);
                
                   // await Future.delayed(const Duration(seconds: 10),(){
                   //       Navigator.of(context).pushReplacement(MaterialPageRoute(

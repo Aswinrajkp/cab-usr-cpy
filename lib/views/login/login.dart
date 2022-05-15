@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                                     print(loginstate);
                                     if (loginstate == 200) {
                                       controller.falseState();
-                                      Navigator.of(context).push(MaterialPageRoute(
+                                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                                           builder: (context) => HomeScreen()));
                                     } else {
                                       controller.loginSetting();

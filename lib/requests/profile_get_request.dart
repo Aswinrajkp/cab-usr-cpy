@@ -10,10 +10,11 @@ class ProfileGettingController extends GetxController{
  late Response response;
 var profile;
  var user = FirebaseAuth.instance.currentUser;
+ String? id;
  
 
  profileGetting() async {
-   String id =await IdStoring.getId();
+    id =await IdStoring.getId();
    print(id);
     try {
       response = await mainDio.get("/users/profile/$id");
@@ -26,7 +27,7 @@ var profile;
  }
  @override
   void onInit() {
-    profileGetting();
+    // profileGetting();
     super.onInit();
   }
 } 

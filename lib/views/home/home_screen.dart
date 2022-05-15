@@ -6,7 +6,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:cab_user/controller/home_controller.dart';
-import 'package:cab_user/views/widgets/leading_widget.dart';
 import 'package:cab_user/views/widgets/panel_widget.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -58,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeController controller = Get.put(HomeController());
     VehicleDetailsServices vehicleDetails = Get.put(VehicleDetailsServices());
     ProfileGettingController profile = Get.put(ProfileGettingController());
+    profile.profileGetting();
     return SafeArea(
       child: Scaffold(
         extendBody: true,

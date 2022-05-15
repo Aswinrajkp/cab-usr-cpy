@@ -1,4 +1,5 @@
 import 'package:cab_user/helpers/shared_preferences.dart';
+import 'package:cab_user/requests/profile_get_request.dart';
 import 'package:cab_user/views/payment/payment_screen.dart';
 import 'package:cab_user/views/widgets/payment_sucess.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileGettingController profile = Get.put(ProfileGettingController());
+    profile.profileGetting();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),

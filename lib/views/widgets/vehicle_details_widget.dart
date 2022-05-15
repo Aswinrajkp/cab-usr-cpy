@@ -1,3 +1,4 @@
+import 'package:cab_user/helpers/socket_io.dart';
 import 'package:cab_user/styles/bottom_sheet_style.dart';
 import 'package:cab_user/views/bottom_sheet/after_completing_ride.dart';
 import 'package:cab_user/views/home/home.dart';
@@ -21,8 +22,9 @@ class VehicleDetailsShowingWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("           Your PIN :", style: infomations),
+                Text("           Your PIN :", style: infomations,),
                 Text("2123", style: infomations),
+              
               ],
             ),
           ),
