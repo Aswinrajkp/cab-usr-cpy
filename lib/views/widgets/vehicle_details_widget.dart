@@ -1,11 +1,10 @@
 import 'package:cab_user/helpers/socket_io.dart';
+import 'package:cab_user/requests/available_vehicle_informations.dart';
 import 'package:cab_user/styles/bottom_sheet_style.dart';
 import 'package:cab_user/views/bottom_sheet/after_completing_ride.dart';
 import 'package:cab_user/views/home/home.dart';
-import 'package:cab_user/views/home/home_screen.dart';
 import 'package:cab_user/views/navigation/map.dart';
 import 'package:cab_user/views/widgets/backbutton.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +14,8 @@ class VehicleDetailsShowingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SocketIOController socketIO = Get.put(SocketIOController());
+    AvailableVehicleInformation vehicleInformation = Get.put(AvailableVehicleInformation());
     return Column(
         children: [
           Padding(
@@ -23,7 +24,7 @@ class VehicleDetailsShowingWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text("           Your PIN :", style: infomations,),
-                Text("2123", style: infomations),
+                Text(socketIO.pinForDriver, style: infomations),
               
               ],
             ),
@@ -34,7 +35,7 @@ class VehicleDetailsShowingWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text("Vehicle Number :", style: infomations),
-                Text("KL 58 W 331", style: infomations),
+                Text(vehicleInformation.details['result']["vehicleNumber"].toString(), style: infomations),
               ],
             ),
           ),
@@ -52,8 +53,7 @@ class VehicleDetailsShowingWidget extends StatelessWidget {
                 ),
                 NeumorphicButton(
                   pressed: false,
-                  onPressed: () => Get.to(
-                     HomeScreen()),
+                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HomeScreen()), (route) => false),
                   style: NeumorphicStyle(
                     border: const NeumorphicBorder(width: 1),
                     shape: NeumorphicShape.convex,

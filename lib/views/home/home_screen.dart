@@ -114,6 +114,7 @@ class _MainScreenState extends State<MainScreen> {
                         panelController: panelController,
                         widget: widget.widget);
                   }),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(19) ),
                 ),
               ],
             )),

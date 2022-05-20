@@ -9,6 +9,7 @@ import 'package:get/state_manager.dart';
 class AvailableVehicleInformation extends GetxController {
   late Response response;
   String? id = "";
+  var details;
 
   idAssigning(data) async {
     id = data;
@@ -18,7 +19,9 @@ class AvailableVehicleInformation extends GetxController {
     gettingAvailableVehicleDetails(data) async {
       try{
             response = await mainDio.get("/driver/info?Id=$data");
-            print(response.data);
+            print("============================================${response.data}");
+            details = json.decode(response.data);
+            update();
       }on DioError catch(e){
            print(e.toString());
       }

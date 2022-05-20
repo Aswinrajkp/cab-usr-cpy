@@ -3,6 +3,7 @@ import 'package:cab_user/helpers/shared_preferences.dart';
 import 'package:cab_user/helpers/socket_io.dart';
 import 'package:cab_user/requests/available_vehicle_get_request.dart';
 import 'package:cab_user/requests/available_vehicle_informations.dart';
+import 'package:cab_user/views/widgets/finding_vehicle_widget.dart';
 import 'package:cab_user/views/widgets/vehicle_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -15,7 +16,8 @@ import 'package:get/get.dart';
 
 class AfterSelectingVehicleScreen extends StatefulWidget {
   String vehicleId;
-   AfterSelectingVehicleScreen({Key? key,required this.vehicleId}) : super(key: key);
+  var distance;
+   AfterSelectingVehicleScreen({Key? key,required this.vehicleId,required this.distance}) : super(key: key);
 
   @override
   State<AfterSelectingVehicleScreen> createState() => _AfterSelectingVehicleScreenState();
@@ -39,21 +41,10 @@ class _AfterSelectingVehicleScreenState extends State<AfterSelectingVehicleScree
      SocketIOController socketIO = Get.put(SocketIOController());
 
     return GetBuilder<AvailableVehicleInformation>(
-      builder: (vehicleInformation) {
+      builder: (controller) {
         return Container(
-          child: vehicleInformation.id ==null?
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text("Finding Vehicle Just Wait", style: findingvehicle),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: NeumorphicProgressIndeterminate(),
-              )
-            ],
-          ):
+          child: controller.details == null?
+          FindingVehicleWidget():
           VehicleDetailsShowingWidget()
         );
       }
@@ -65,17 +56,9 @@ class _AfterSelectingVehicleScreenState extends State<AfterSelectingVehicleScree
                   print("?????????????????????????????????????????????????????????????UserId getting working");
                   String userId = await IdStoring.getId();
                   print("============================${getController.pickupLocation}");
-                socketIO.socketConnect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: widget.vehicleId,pickup: getController.pickupLocation,);
+                socketIO.socketConnect(location: getController.pickUpLocationForDriver,userId:userId, vehicleId: widget.vehicleId,pickup: getController.pickupLocation,location2: getController.destinationLocationForDriver,distance: widget.distance,dropout: getController.destinationLocation);
                
-                  // await Future.delayed(const Duration(seconds: 10),(){
-                  //       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  //     builder: (ctx) => MainScreen(
-                  //           widget: AfterFindingVehicleScreen(),
-                  //           height: .25,
-                  //           leading: BackButtonWidget(),
-                  //         )));
-                  // }
-                  //);
+
                  
                 }
 }

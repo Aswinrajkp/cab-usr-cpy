@@ -19,8 +19,9 @@ class AfterCompletingScreen extends StatelessWidget {
         child: Center(
           child: NeumorphicButton(
             pressed: false,
-           onPressed: () =>
-                Get.off(const PaymentPage()),
+           onPressed: () {
+                Get.off(const PaymentPage());
+                },
             style: NeumorphicStyle(
               border: const NeumorphicBorder(width: 1),
               shape: NeumorphicShape.convex,

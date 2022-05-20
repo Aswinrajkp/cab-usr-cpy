@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: size.height * .05,
+                                  height: size.height * .01,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -97,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: size.height * .10,
+                  height: size.height *.07,
                 ),
                 GetBuilder<ProfileController>(builder: (controller) {
                   return NeumorphicButton(

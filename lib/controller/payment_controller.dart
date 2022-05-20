@@ -1,3 +1,5 @@
+import 'package:cab_user/helpers/socket_io.dart';
+import 'package:cab_user/requests/available_vehicle_informations.dart';
 import 'package:cab_user/views/widgets/payment_sucess.dart';
 import 'package:flutter/material.dart';
 
@@ -9,12 +11,13 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentController extends GetxController{
  late Razorpay razorpay;
+ late String payment ;
 
 
  void razorPayPaying() async {
     var options = {
       'key': 'rzp_test_eY0A26ThdUXkrC',
-      'amount': (double.parse("100")*100.roundToDouble()).toString(),
+      'amount': (double.parse(payment)*100.roundToDouble()).toString(),
       'name': '',
       'description': '',
       'retry': {'enabled': true, 'max_count': 1},
@@ -34,6 +37,12 @@ class PaymentController extends GetxController{
 
   void handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
+
+  
+  SocketIOController().pinForDriver = '';
+  AvailableVehicleInformation().details = null;
+
+
   Get.off(SuccessScreen());
   }
 

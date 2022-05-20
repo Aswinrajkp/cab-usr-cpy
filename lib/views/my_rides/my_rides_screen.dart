@@ -32,12 +32,17 @@ class MyRidesScreen extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<List<dynamic>?> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CupertinoActivityIndicator();
+                return const Center(child: CupertinoActivityIndicator());
+              }
+              if(snapshot.data == null){
+                return
+                Center(child: Text("No History"),);
               }
 
               List history = snapshot.data!;
 
               return ListView.builder(
+            physics: ScrollPhysics(),
                 itemCount: history.length,
                 itemBuilder: (BuildContext context, int index) {
                   var historyDetails = history[index];

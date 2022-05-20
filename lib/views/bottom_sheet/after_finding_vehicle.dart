@@ -1,3 +1,4 @@
+import 'package:cab_user/helpers/socket_io.dart';
 import 'package:cab_user/views/bottom_sheet/bottom_showing.dart';
 import 'package:cab_user/views/navigation/map.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class AfterFindingVehicleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SocketIOController socketIO = Get.put(SocketIOController());
     return Container(
       child: Column(
         children: [
@@ -25,7 +27,7 @@ class AfterFindingVehicleScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text("           Your PIN :", style: infomations),
-                Text("2123", style: infomations),
+                Text( uInfo.toString(), style: infomations),
               ],
             ),
           ),

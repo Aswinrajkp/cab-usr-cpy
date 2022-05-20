@@ -27,6 +27,7 @@ class mapController extends GetxController {
   final List<CameraPosition> locations = [];
 
   late String pickUpLocationForDriver;
+  late String destinationLocationForDriver;
 
   // for map routing
 
@@ -106,6 +107,7 @@ bool isNavigating = false;
 
   destinationSetting(index) {
     destination = json.encode(response[index]);
+    destinationLocationForDriver = response[index]["place"];
     update();
   }
 

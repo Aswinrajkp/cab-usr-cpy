@@ -19,8 +19,8 @@ class SuccessScreen extends StatelessWidget {
         });
       },
       builder: (controller) {
-        return Container(
-          child: Lottie.asset("assets/lottie/heart-pay.json"),
+        return Scaffold(
+          body: Center(child: Lottie.asset("assets/lottie/heart-pay.json")),
         );
       }
     );

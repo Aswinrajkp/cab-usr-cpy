@@ -16,6 +16,7 @@ class AvailableVehicles extends GetxController {
       Map data = json.decode(response.data);
       availableVehicles = data["result"];
       print(availableVehicles[0]);
+      
       return availableVehicles[0]["_id"];
     } on DioError catch (e) {
       print(e.toString());
